@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jamference</title>
+<link rel="icon" href="https://img.itch.zone/aW1nLzI5NTI5NzEzLmpwZWc=/original/J8TMeN.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
+
+<style>
+  :root {
+    /* palette lifted from the jam key art */
+    --navy:    #1B3A52;
+    --sky:     #E7F5FB;
+    --sky-2:   #C9E9F5;
+    --cream:   #FFF8EC;
+    --ginger:  #E27E2C;
+    --cyan:    #2FB6CE;
+    --mint:    #6BBE59;
+    --berry:   #DE4F9B;
+    --grape:   #7A50BE;
+    --gold:    #F5BC3F;
+
+    --ground:  var(--sky);
+    --card:    #FFFFFF;
+    --sunk:    var(--cream);
+    --ink:     var(--navy);
+    --ink-2:   #5E7C93;
+    --edge:    #C9E1EE;
+    --shadow:  0 2px 0 rgba(27,58,82,.07), 0 10px 26px -14px rgba(27,58,82,.30);
+
+    --display: "Baloo 2", "Trebuchet MS", sans-serif;
+    --body:    "Nunito", "Segoe UI", system-ui, sans-serif;
+    --pixel:   "Silkscreen", ui-monospace, monospace;
+
+    --r-lg: 28px;
+    --r-md: 20px;
+    --r-sm: 14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #102433;
+      --card:   #1B3A52;
+      --sunk:   #17334A;
+      --ink:    #EAF6FB;
+      --ink-2:  #9DBBCD;
+      --edge:   #2C5271;
+      --ginger: #F0954A;
+      --cyan:   #52D2E6;
+      --mint:   #85D372;
+      --berry:  #F06BB2;
+      --grape:  #A283DE;
+      --gold:   #FFCE5E;
+      --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #102433;
+    --card:   #1B3A52;
+    --sunk:   #17334A;
+    --ink:    #EAF6FB;
+    --ink-2:  #9DBBCD;
+    --edge:   #2C5271;
+    --ginger: #F0954A;
+    --cyan:   #52D2E6;
+    --mint:   #85D372;
+    --berry:  #F06BB2;
+    --grape:  #A283DE;
+    --gold:   #FFCE5E;
+    --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero { padding: 1.25rem 0 0; }
+
+  .hero-frame {
+    background: var(--navy);
+    border-radius: var(--r-lg);
+    padding: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .hero-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .tagline {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 4.4vw, 1.875rem);
+    line-height: 1.2;
+    text-align: center;
+    text-wrap: balance;
+    margin: 1.5rem auto 0;
+    max-width: 26ch;
+  }
+
+  .tagline span {
+    background: linear-gradient(96deg, var(--cyan), var(--grape) 55%, var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub {
+    text-align: center;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin: 0.5rem auto 0;
+  }
+
+  /* ---------- spec chips ---------- */
+
+  .spec {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .spec li {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    padding: 1rem 1.1rem 1.1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 6.25rem;
+  }
+
+  .spec b {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .spec .val {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.0625rem, 3.4vw, 1.375rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .spec .s-theme { border-color: var(--ginger); }
+  .spec .s-theme .val { color: var(--ginger); }
+  .spec .s-restriction { border-color: var(--grape); }
+  .spec .s-restriction .val { color: var(--grape); }
+
+  @media (max-width: 26rem) {
+    .spec { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- sections & cards ---------- */
+
+  main { padding-bottom: 1rem; }
+
+  section { padding: 2.75rem 0 0; }
+
+  .card {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-lg);
+    padding: 1.6rem 1.6rem 1.75rem;
+    box-shadow: var(--shadow);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 4.6vw, 2rem);
+    line-height: 1.12;
+    margin: 0 0 0.85rem;
+    text-wrap: balance;
+  }
+
+  .kicker {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0 0 0.5rem;
+  }
+
+  p { margin: 0 0 1rem; max-width: 66ch; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 700; }
+
+  .paw { color: var(--ginger); }
+
+  /* ---------- sealed restriction ---------- */
+
+  .sealed {
+    margin: 1.4rem 0 0;
+    background: var(--sunk);
+    border: 3px dashed var(--ginger);
+    border-radius: var(--r-md);
+    padding: 1.25rem 1.35rem 1.35rem;
+  }
+
+  .sealed .kicker { color: var(--ginger); }
+
+  .redacted {
+    font-family: var(--pixel);
+    font-size: clamp(0.75rem, 3vw, 1rem);
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    opacity: 0.22;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 0 0.8rem;
+    user-select: none;
+  }
+
+  .sealed p { font-size: 0.9375rem; margin: 0; }
+
+  /* ---------- two weeks ---------- */
+
+  .weeks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+
+  .week { position: relative; padding-top: 2.4rem; }
+
+  .badge {
+    position: absolute;
+    top: -0.9rem;
+    left: 1.4rem;
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem 0.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .badge.b1 { background: var(--mint); }
+  .badge.b2 { background: var(--grape); }
+
+  .week h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .week p { font-size: 0.9375rem; }
+
+  /* ---------- ratings ---------- */
+
+  .cats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+    margin: 1.4rem 0 1.25rem;
+  }
+
+  .cat-card {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cat-top {
+    padding: 0.9rem 1.1rem 0.95rem;
+    color: #fff;
+  }
+
+  .cat-card:nth-child(1) .cat-top { background: var(--ginger); }
+  .cat-card:nth-child(2) .cat-top { background: var(--cyan); }
+  .cat-card:nth-child(3) .cat-top { background: var(--berry); }
+
+  .cat-top .name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.375rem;
+    line-height: 1.05;
+    display: block;
+  }
+
+  .cat-top .share {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.92;
+  }
+
+  .cat-card > p {
+    margin: 0;
+    padding: 1rem 1.1rem 1.15rem;
+    font-size: 0.9375rem;
+  }
+
+  /* ---------- rules ---------- */
+
+  ol.rules {
+    list-style: none;
+    counter-reset: r;
+    padding: 0;
+    margin: 1.4rem 0 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  ol.rules li {
+    counter-increment: r;
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    padding: 1.1rem 1.2rem 1.2rem 3.9rem;
+    position: relative;
+  }
+
+  ol.rules li::before {
+    content: counter(r);
+    position: absolute;
+    left: 1.1rem;
+    top: 1.05rem;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--ink-2);
+  }
+
+  ol.rules li:nth-child(1)::before { background: var(--ginger); }
+  ol.rules li:nth-child(2)::before { background: var(--grape); }
+  ol.rules li:nth-child(3)::before { background: var(--mint); }
+  ol.rules li:nth-child(4)::before { background: var(--cyan); }
+  ol.rules li:nth-child(5)::before { background: var(--berry); }
+  ol.rules li:nth-child(6)::before { background: var(--gold); color: var(--navy); }
+  ol.rules li:nth-child(7)::before { background: var(--ink-2); }
+
+  ol.rules h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+  }
+
+  ol.rules p { font-size: 0.9375rem; margin: 0; }
+
+  .flag {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--ginger);
+    border-radius: 999px;
+    padding: 0.25rem 0.55rem 0.3rem;
+    margin-left: 0.45rem;
+    vertical-align: 0.18em;
+  }
+
+  /* ---------- faq ---------- */
+
+  .faq { display: grid; gap: 0.6rem; margin: 1.4rem 0 0; }
+
+  details {
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.85rem 3rem 0.9rem 1.1rem;
+    font-weight: 700;
+    position: relative;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: "+";
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--cyan);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  details[open] summary::after { content: "\2212"; }
+
+  summary:focus-visible { outline: 3px solid var(--grape); outline-offset: -3px; }
+
+  details p {
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+    padding: 0 1.1rem 1.1rem;
+    margin: 0;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 2.75rem;
+    background: var(--navy);
+    color: var(--sky);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding: 2.25rem 0 2.75rem;
+  }
+
+  footer .kicker { color: var(--gold); }
+
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 1.6rem;
+    display: grid;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+  }
+
+  footer li b {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+  }
+
+  .signrow {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .emblem {
+    width: 96px;
+    height: 96px;
+    flex: none;
+    display: block;
+    border-radius: var(--r-md);
+    background: #000;
+    border: 2px solid rgba(245,188,63,.45);
+  }
+
+  .signoff {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 5vw, 2rem);
+    line-height: 1.15;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .signoff span {
+    background: linear-gradient(96deg, var(--cyan), var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .chip {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.6875rem;
+    background: rgba(255,255,255,.10);
+    border: 2px dashed var(--gold);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem 0.25rem;
+    color: var(--sky);
+  }
+
+  a { color: var(--ginger); border-radius: 6px; }
+  a:focus-visible { outline: 3px solid var(--grape); outline-offset: 2px; }
+  footer a { color: var(--gold); }
+
+  .card, .cat-card, details { transition: transform .18s ease; }
+  .cat-card:hover { transform: translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap hero">
+  <h1 class="sr-only">Jamference: AI Game Jam Hack</h1>
+  <div class="hero-frame">
+    <img src="https://img.itch.zone/aW1nLzI5NTI3MTA5LmdpZg==/original/YTR1ez.gif" alt="Jamference: AI Game Jam Hack, a pixel-art scene with a ginger cat, a friendly robot and floating AI chips.">
+  </div>
+  <p class="tagline">One week. One theme. <span>One restriction nobody sees coming.</span></p>
+  <p class="sub">A game jam about making games <em>with</em> AI, out in the open. Hosted by Story Machine AI.</p>
+
+  <ul class="spec">
+    <li class="s-theme">
+      <b>Theme</b>
+      <span class="val">Cat and Robot</span>
+    </li>
+    <li class="s-restriction">
+      <b>Restriction</b>
+      <span class="val">To Be Announced</span>
+    </li>
+  </ul>
+</div>
+
+<main class="wrap">
+
+  <section>
+    <div class="card">
+      <h2>What is Jamference?</h2>
+      <p>Jamference is a game jam built around one idea: making games <em>with</em> AI, out in the open. You get a theme up front, a surprise restriction at the starting bell, and one week to ship something playable. The week after that, everyone plays and rates what everyone else made.</p>
+      <p>Everyone starts from the same two prompts and ends up somewhere completely different. That's the fun part. Build solo, build with friends, build with a model in the loop. As long as something playable exists at the deadline, you're in.</p>
+      <p>The full week is there to make it easier to take part, not a bar you have to clear. Your game can be one prompt or a full week of work, a tiny toy or something huge. Just make something fun. New to jams? This is a good one to start with.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>The theme: <span class="paw">Cat and Robot</span></h2>
+      <p>The theme is a launchpad, not a leash. Take it literally, take it sideways, or take it apart: a stray cat and a scrapyard drone, a robot convinced it <em>is</em> a cat, two rival AIs named Cat and Robot. Nobody is checking your homework against a definition.</p>
+
+      <div class="sealed">
+        <p class="kicker">Restriction: to be announced at the bell</p>
+        <p class="redacted" aria-hidden="true">▓▓▓▓▓ ▓▓▓▓▓▓▓▓ ▓▓ ▓▓▓▓▓ ▓▓▓▓▓▓▓ ▓▓▓▓ ▓▓▓▓▓▓▓▓</p>
+        <p>The restriction lands the second the jam opens, not a minute before. Nobody gets a head start, nobody gets to pre-build around it. And unlike the theme, it's <strong>mandatory</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two weeks, two jobs</h2>
+    <div class="weeks">
+      <div class="card week">
+        <span class="badge b1">Week 01</span>
+        <h3>Build week</h3>
+        <p>The restriction drops at the open. Seven days to make and submit. Submissions close hard at the deadline, and whatever is uploaded then is what gets played.</p>
+      </div>
+      <div class="card week">
+        <span class="badge b2">Week 02</span>
+        <h3>Rating week</h3>
+        <p>Everyone plays everyone. Score the three categories, leave people some real feedback, and the averages decide it at the end of the week.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ratings</h2>
+    <p>Three categories, weighted equally. The three scores are averaged, and the highest average wins.</p>
+
+    <div class="cats">
+      <div class="cat-card">
+        <div class="cat-top"><span class="name">Fun</span></div>
+        <p>Was the game actually good to play? This is the one that matters most, because it's the whole point of making games.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-top"><span class="name">AI use</span></div>
+        <p>How was AI used in making the game, or inside the game itself? Interesting, ambitious, well-judged use scores higher than sheer volume of tool calls.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-top"><span class="name">Polish</span></div>
+        <p>How well does the whole thing come together? Art, audio, animation and feel: the sense that every piece was built for the others.</p>
+      </div>
+    </div>
+
+    <p>Rate generously and rate honestly. Everyone here shipped something in a week.</p>
+  </section>
+
+  <section>
+    <h2>Rules</h2>
+    <ol class="rules">
+      <li>
+        <h3>AI must be part of the build<span class="flag">Required</span></h3>
+        <p>This is the rule that defines the jam. AI has to be genuinely involved somewhere: code, art, audio, writing, level generation, design ideation, or as a live system inside the game itself. "I used it for a variable name" doesn't count; we're looking for AI doing real work. Tell us what you used and where.</p>
+      </li>
+      <li>
+        <h3>The restriction is mandatory<span class="flag">Required</span></h3>
+        <p>The theme is optional inspiration. The restriction is not. Incorporate it, and be ready to explain how in a sentence.</p>
+      </li>
+      <li>
+        <h3>Build it during the jam week</h3>
+        <p>Games must be made inside the one-week build window. Existing projects, prototypes you've been sitting on, and last month's abandoned build are not eligible.</p>
+      </li>
+      <li>
+        <h3>Reused assets are fine if they're yours to reuse</h3>
+        <p>Your own libraries, your own engine, your own tooling, licensed asset packs, AI-generated assets are all allowed. Just make sure you have the right to use them, and credit anything that needs crediting.</p>
+      </li>
+      <li>
+        <h3>Keep it broadly safe for everyone</h3>
+        <p>No NSFW content, targeted harassment, or hate. If your game contains anything intense, such as horror, gore, flashing imagery or heavy themes, flag it clearly on your submission page.</p>
+      </li>
+      <li>
+        <h3>Answer the submission questions straight</h3>
+        <p>You'll be asked a handful of questions when you submit, including how AI was used in your project. Answer them honestly. It's the most interesting data the jam produces.</p>
+      </li>
+      <li>
+        <h3>Disclose your team</h3>
+        <p>Solo, duo, or squad, all fine. Just list who did what, and say so if you're contributing to more than one entry.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I have to follow the theme?</summary>
+        <p>No. "Cat and Robot" is there to spark ideas. Only the restriction is compulsory.</p>
+      </details>
+      <details>
+        <summary>Which AI tools can I use?</summary>
+        <p>Any of them. Coding assistants, image and audio models, agents, local models, whatever you've got. Combine them freely.</p>
+      </details>
+      <details>
+        <summary>Do I need to disclose which tools I used?</summary>
+        <p>Yes, briefly, on your submission. No essay required; a short list of tools and what each one did is plenty.</p>
+      </details>
+      <details>
+        <summary>Can I build a game <em>about</em> AI instead of using AI?</summary>
+        <p>You can do both, and plenty of people will. But rule 1 still stands: AI has to be part of how the thing got made or how it runs.</p>
+      </details>
+      <details>
+        <summary>What engine can I use?</summary>
+        <p>Whatever you're fastest in. Unity, Godot, Unreal, Bevy, plain HTML and JavaScript, Twine, a spreadsheet with delusions of grandeur. No restrictions.</p>
+      </details>
+      <details>
+        <summary>What kind of game can I make?</summary>
+        <p>Any genre, any platform. Web builds get played the most, so if you want ratings, a browser version helps enormously.</p>
+      </details>
+      <details>
+        <summary>Does my game have to be playable in the browser?</summary>
+        <p>It is recommended but not required. A web build gets played and rated far more than a download, because most people rating are clicking through a long list of entries. If you can only ship a downloadable build, that is still a valid entry.</p>
+      </details>
+      <details>
+        <summary>Can I submit more than one entry?</summary>
+        <p>Yes. Each one is judged on its own merits, and each needs its own submission page.</p>
+      </details>
+      <details>
+        <summary>Can I keep working on it during rating week?</summary>
+        <p>Bug fixes are fine, and encouraged if something is broken enough to block play. Adding features, content or art is not, because everyone should be rated on the same build. Keep the deadline version playable all week and label any post-jam version clearly.</p>
+      </details>
+      <details>
+        <summary>How is the winner decided?</summary>
+        <p>Fun, AI use, and Polish are averaged into a single score. Highest average takes it.</p>
+      </details>
+      <details>
+        <summary>I missed the deadline. Now what?</summary>
+        <p>Get in touch in the community channel as soon as you can. Late submissions are handled case by case; the earlier you say something, the more we can do.</p>
+      </details>
+      <details>
+        <summary>Is there a prize?</summary>
+        <p>Bragging rights, a leaderboard, and a pile of games that didn't exist a fortnight ago. The real prize is finding out what you can ship in a week with AI riding shotgun.</p>
+      </details>
+      <details>
+        <summary>When's the next one?</summary>
+        <p>Announced at the end of each jam. Join the community to hear it first.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <ul>
+      <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
+      <li><b>Restriction reveal</b> Posted here and in the community the second the jam opens.</li>
+      <li><b>Submissions</b> Open all week, closing hard at the deadline.</li>
+    </ul>
+    <div class="signrow">
+      <img class="emblem" src="https://img.itch.zone/aW1nLzI5NTI5NzEzLmpwZWc=/original/J8TMeN.jpeg" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
+      <p class="signoff">Bring a cat. Bring a robot. <span>Bring a model.</span></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
