@@ -138,6 +138,127 @@
     margin: 0.5rem auto 0;
   }
 
+  /* ---------- primary CTA ---------- */
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 30rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+    line-height: 1.1;
+    color: #fff;
+    background: linear-gradient(96deg, var(--ginger), var(--berry) 62%, var(--grape));
+    border: 3px solid var(--navy);
+    border-radius: 999px;
+    padding: 1rem 1.6rem 1.1rem;
+    box-shadow: 0 4px 0 var(--navy), 0 14px 30px -14px rgba(27,58,82,.55);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--navy), 0 18px 34px -14px rgba(27,58,82,.6);
+  }
+
+  .cta:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--navy), 0 10px 22px -14px rgba(27,58,82,.5);
+  }
+
+  .cta:focus-visible { outline: 3px solid var(--grape); outline-offset: 4px; }
+
+  .cta .arrow { font-size: 1.1em; line-height: 1; transform: translateY(-0.04em); }
+
+  .cta-note {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    text-align: center;
+    margin: 0.7rem auto 0;
+  }
+
+  /* ---------- countdown ---------- */
+
+  .countdown {
+    margin: 1.75rem 0 0;
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow);
+    padding: 1.25rem 1.25rem 1.35rem;
+    text-align: center;
+  }
+
+  .countdown .kicker { color: var(--mint); margin: 0 0 0.75rem; }
+
+  .clock {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+
+  .unit {
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-sm);
+    padding: 0.6rem 0.2rem 0.65rem;
+  }
+
+  .unit .num {
+    display: block;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .unit:nth-child(1) .num { color: var(--ginger); }
+  .unit:nth-child(2) .num { color: var(--cyan); }
+  .unit:nth-child(3) .num { color: var(--mint); }
+  .unit:nth-child(4) .num { color: var(--berry); }
+
+  .unit .lab {
+    display: block;
+    font-family: var(--pixel);
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-top: 0.4rem;
+  }
+
+  .cd-dates {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    margin: 0.9rem auto 0;
+    max-width: 40ch;
+  }
+
+  .cd-dates b { color: var(--ink); font-weight: 700; }
+
+  .countdown.is-live { border-color: var(--mint); }
+  .countdown.is-live .kicker { color: var(--berry); }
+  .countdown.is-over .clock { display: none; }
+
   /* ---------- spec chips ---------- */
 
   .spec {
@@ -286,6 +407,18 @@
     font-weight: 800;
     font-size: 1.25rem;
     margin: 0 0 0.35rem;
+  }
+
+  .wk-date {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    white-space: nowrap;
+    margin-left: 0.4rem;
+    vertical-align: 0.2em;
   }
 
   .week p { font-size: 0.9375rem; }
@@ -556,6 +689,27 @@
   <p class="tagline">One week. One theme. <span>One restriction nobody sees coming.</span></p>
   <p class="sub">A game jam about making games <em>with</em> AI, out in the open. Hosted by Story Machine AI.</p>
 
+  <div class="cta-row">
+    <a class="cta" href="https://itch.io/jam/jamference-ai-game-jam-hack-1" target="_blank" rel="noopener">
+      Join the jam on itch.io <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+  <p class="cta-note">Free to enter &middot; Solo or team</p>
+
+  <div class="countdown" id="countdown"
+       data-open="2026-10-02T07:00:00Z"
+       data-close="2026-10-09T07:00:00Z"
+       data-results="2026-10-16T07:00:00Z">
+    <p class="kicker" id="cd-label">Jam opens in</p>
+    <div class="clock" id="cd-clock" role="timer" aria-live="off">
+      <div class="unit"><span class="num" data-unit="d">--</span><span class="lab">days</span></div>
+      <div class="unit"><span class="num" data-unit="h">--</span><span class="lab">hours</span></div>
+      <div class="unit"><span class="num" data-unit="m">--</span><span class="lab">mins</span></div>
+      <div class="unit"><span class="num" data-unit="s">--</span><span class="lab">secs</span></div>
+    </div>
+    <p class="cd-dates" id="cd-dates">Submissions open <b><time datetime="2026-10-02T07:00:00Z">2 Oct 2026, 07:00 UTC</time></b> and close <b><time datetime="2026-10-09T07:00:00Z">9 Oct 2026, 07:00 UTC</time></b>. Rating runs the week after.</p>
+  </div>
+
   <ul class="spec">
     <li class="s-theme">
       <b>Theme</b>
@@ -597,12 +751,12 @@
     <div class="weeks">
       <div class="card week">
         <span class="badge b1">Week 01</span>
-        <h3>Build week</h3>
+        <h3>Build week <span class="wk-date">2 &ndash; 9 Oct</span></h3>
         <p>The restriction drops at the open. Seven days to make and submit. Submissions close hard at the deadline, and whatever is uploaded then is what gets played.</p>
       </div>
       <div class="card week">
         <span class="badge b2">Week 02</span>
-        <h3>Rating week</h3>
+        <h3>Rating week <span class="wk-date">9 &ndash; 16 Oct</span></h3>
         <p>Everyone plays everyone. Score the three categories, leave people some real feedback, and the averages decide it at the end of the week.</p>
       </div>
     </div>
@@ -654,8 +808,8 @@
         <p>No NSFW content, targeted harassment, or hate. If your game contains anything intense, such as horror, gore, flashing imagery or heavy themes, flag it clearly on your submission page.</p>
       </li>
       <li>
-        <h3>Answer the submission questions straight</h3>
-        <p>You'll be asked a handful of questions when you submit, including how AI was used in your project. Answer them honestly. It's the most interesting data the jam produces.</p>
+        <h3>Be nice</h3>
+        <p>This is a place to make games and have fun. Give constructive feedback and don't bash anyone for how they use AI.</p>
       </li>
       <li>
         <h3>Disclose your team</h3>
@@ -717,7 +871,7 @@
       </details>
       <details>
         <summary>When's the next one?</summary>
-        <p>Announced at the end of each jam. Join the community to hear it first.</p>
+        <p>We&rsquo;ll be hosting jams every two weeks. Keep an eye out for the next one, and join the community to hear it first.</p>
       </details>
     </div>
   </section>
@@ -729,7 +883,7 @@
     <ul>
       <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
       <li><b>Restriction reveal</b> Posted here and in the community the second the jam opens.</li>
-      <li><b>Submissions</b> Open all week, closing hard at the deadline.</li>
+      <li><b>Submissions</b> Open 2 October, closing hard at the deadline on 9 October.</li>
     </ul>
     <div class="signrow">
       <img class="emblem" src="https://img.itch.zone/aW1nLzI5NTI5NzEzLmpwZWc=/original/J8TMeN.jpeg" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
@@ -737,5 +891,65 @@
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var box = document.getElementById('countdown');
+  if (!box) return;
+
+  var open    = new Date(box.dataset.open);
+  var close   = new Date(box.dataset.close);
+  var results = new Date(box.dataset.results);
+  var label   = document.getElementById('cd-label');
+  var nums    = {};
+  ['d', 'h', 'm', 's'].forEach(function (k) {
+    nums[k] = box.querySelector('[data-unit="' + k + '"]');
+  });
+
+  // Re-state the dates in the visitor's own timezone where we can.
+  try {
+    var fmt = new Intl.DateTimeFormat(undefined, {
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
+    });
+    box.querySelectorAll('time').forEach(function (t) {
+      t.textContent = fmt.format(new Date(t.getAttribute('datetime')));
+    });
+  } catch (e) { /* keep the UTC fallback text */ }
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function tick() {
+    var now = new Date();
+    var target, text, over = false, live = false;
+
+    if (now < open) {
+      target = open; text = 'Jam opens in';
+    } else if (now < close) {
+      target = close; text = 'Submissions close in'; live = true;
+    } else if (now < results) {
+      target = results; text = 'Rating week ends in'; live = true;
+    } else {
+      over = true; text = 'This jam has wrapped \u2014 next one is two weeks out';
+    }
+
+    box.classList.toggle('is-live', live);
+    box.classList.toggle('is-over', over);
+    label.textContent = text;
+    if (over) return true;
+
+    var ms = target - now;
+    var s  = Math.floor(ms / 1000);
+    nums.d.textContent = String(Math.floor(s / 86400));
+    nums.h.textContent = pad(Math.floor(s / 3600) % 24);
+    nums.m.textContent = pad(Math.floor(s / 60) % 60);
+    nums.s.textContent = pad(s % 60);
+    return false;
+  }
+
+  if (!tick()) {
+    var id = setInterval(function () { if (tick()) clearInterval(id); }, 1000);
+  }
+})();
+</script>
 </body>
 </html>
