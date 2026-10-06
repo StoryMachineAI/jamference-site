@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jamference</title>
-<link rel="icon" href="https://img.itch.zone/aW1nLzI5NTI5NzEzLmpwZWc=/original/J8TMeN.jpeg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
@@ -375,6 +376,19 @@
 
   .sealed p { font-size: 0.9375rem; margin: 0; }
 
+  .sealed.revealed { border: 3px solid var(--grape); }
+  .sealed.revealed .kicker { color: var(--grape); }
+  .sealed.revealed .reveal-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 4.6vw, 1.875rem);
+    line-height: 1.1;
+    color: var(--grape);
+    margin: 0 0 0.8rem;
+    text-wrap: balance;
+  }
+  .sealed.revealed p + p { margin-top: 0.75rem; }
+
   /* ---------- two weeks ---------- */
 
   .weeks {
@@ -684,7 +698,7 @@
 <div class="wrap hero">
   <h1 class="sr-only">Jamference: AI Game Jam Hack</h1>
   <div class="hero-frame">
-    <img src="https://img.itch.zone/aW1nLzI5NTI3MTA5LmdpZg==/original/YTR1ez.gif" alt="Jamference: AI Game Jam Hack, a pixel-art scene with a ginger cat, a friendly robot and floating AI chips.">
+    <img src="jamference1.gif" alt="Jamference: AI Game Jam Hack, a pixel-art scene with a ginger cat, a friendly robot and floating AI chips.">
   </div>
   <p class="tagline">One week. One theme. <span>One restriction nobody sees coming.</span></p>
   <p class="sub">A game jam about making games <em>with</em> AI, out in the open. Hosted by Story Machine AI.</p>
@@ -717,7 +731,7 @@
     </li>
     <li class="s-restriction">
       <b>Restriction</b>
-      <span class="val">To Be Announced</span>
+      <span class="val">Movement Input Only</span>
     </li>
   </ul>
 </div>
@@ -738,10 +752,12 @@
       <h2>The theme: <span class="paw">Cat and Robot</span></h2>
       <p>The theme is a launchpad, not a leash. Take it literally, take it sideways, or take it apart: a stray cat and a scrapyard drone, a robot convinced it <em>is</em> a cat, two rival AIs named Cat and Robot. Nobody is checking your homework against a definition.</p>
 
-      <div class="sealed">
-        <p class="kicker">Restriction: to be announced at the bell</p>
-        <p class="redacted" aria-hidden="true">▓▓▓▓▓ ▓▓▓▓▓▓▓▓ ▓▓ ▓▓▓▓▓ ▓▓▓▓▓▓▓ ▓▓▓▓ ▓▓▓▓▓▓▓▓</p>
-        <p>The restriction lands the second the jam opens, not a minute before. Nobody gets a head start, nobody gets to pre-build around it. And unlike the theme, it's <strong>mandatory</strong>.</p>
+      <div class="sealed revealed">
+        <p class="kicker">Restriction: revealed</p>
+        <p class="reveal-title">Movement Input Only</p>
+        <p>All inputs can map only to player movement. No attack button, no shoot button, no clickable button selection UI, only movement.</p>
+        <p>Example games that match this restriction: Flappy Bird, Snake, Super Mario (without the fireballs), Super Meat Boy. Tetris counts too, since you are only moving the pieces. Vampire Survivors is close, but the upgrade selection menu would be an input without movement.</p>
+        <p>And unlike the theme, the restriction is <strong>mandatory</strong>.</p>
       </div>
     </div>
   </section>
@@ -882,11 +898,12 @@
   <div class="wrap">
     <ul>
       <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
-      <li><b>Restriction reveal</b> Posted here and in the community the second the jam opens.</li>
+      <li><b>Restriction</b> Movement Input Only. Every input moves the player, nothing else.</li>
       <li><b>Submissions</b> Open 2 October, closing hard at the deadline on 9 October.</li>
+      <li><b>Previous jams</b> <a href="previous-jams.html">See every past theme, restriction and entry</a></li>
     </ul>
     <div class="signrow">
-      <img class="emblem" src="https://img.itch.zone/aW1nLzI5NTI5NzEzLmpwZWc=/original/J8TMeN.jpeg" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
+      <img class="emblem" src="logo-192.jpg" width="96" height="96" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
       <p class="signoff">Bring a cat. Bring a robot. <span>Bring a model.</span></p>
     </div>
   </div>

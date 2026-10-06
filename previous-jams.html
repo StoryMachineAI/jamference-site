@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Previous jams · Jamference</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
+
+<style>
+  :root {
+    /* palette lifted from the jam key art */
+    --navy:    #1B3A52;
+    --sky:     #E7F5FB;
+    --sky-2:   #C9E9F5;
+    --cream:   #FFF8EC;
+    --ginger:  #E27E2C;
+    --cyan:    #2FB6CE;
+    --mint:    #6BBE59;
+    --berry:   #DE4F9B;
+    --grape:   #7A50BE;
+    --gold:    #F5BC3F;
+
+    --ground:  var(--sky);
+    --card:    #FFFFFF;
+    --sunk:    var(--cream);
+    --ink:     var(--navy);
+    --ink-2:   #5E7C93;
+    --edge:    #C9E1EE;
+    --shadow:  0 2px 0 rgba(27,58,82,.07), 0 10px 26px -14px rgba(27,58,82,.30);
+
+    --display: "Baloo 2", "Trebuchet MS", sans-serif;
+    --body:    "Nunito", "Segoe UI", system-ui, sans-serif;
+    --pixel:   "Silkscreen", ui-monospace, monospace;
+
+    --r-lg: 28px;
+    --r-md: 20px;
+    --r-sm: 14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #102433;
+      --card:   #1B3A52;
+      --sunk:   #17334A;
+      --ink:    #EAF6FB;
+      --ink-2:  #9DBBCD;
+      --edge:   #2C5271;
+      --ginger: #F0954A;
+      --cyan:   #52D2E6;
+      --mint:   #85D372;
+      --berry:  #F06BB2;
+      --grape:  #A283DE;
+      --gold:   #FFCE5E;
+      --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #102433;
+    --card:   #1B3A52;
+    --sunk:   #17334A;
+    --ink:    #EAF6FB;
+    --ink-2:  #9DBBCD;
+    --edge:   #2C5271;
+    --ginger: #F0954A;
+    --cyan:   #52D2E6;
+    --mint:   #85D372;
+    --berry:  #F06BB2;
+    --grape:  #A283DE;
+    --gold:   #FFCE5E;
+    --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero { padding: 1.25rem 0 0; }
+
+  .hero-frame {
+    background: var(--navy);
+    border-radius: var(--r-lg);
+    padding: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .hero-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .tagline {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 4.4vw, 1.875rem);
+    line-height: 1.2;
+    text-align: center;
+    text-wrap: balance;
+    margin: 1.5rem auto 0;
+    max-width: 26ch;
+  }
+
+  .tagline span {
+    background: linear-gradient(96deg, var(--cyan), var(--grape) 55%, var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub {
+    text-align: center;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin: 0.5rem auto 0;
+  }
+
+  /* ---------- primary CTA ---------- */
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 30rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+    line-height: 1.1;
+    color: #fff;
+    background: linear-gradient(96deg, var(--ginger), var(--berry) 62%, var(--grape));
+    border: 3px solid var(--navy);
+    border-radius: 999px;
+    padding: 1rem 1.6rem 1.1rem;
+    box-shadow: 0 4px 0 var(--navy), 0 14px 30px -14px rgba(27,58,82,.55);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--navy), 0 18px 34px -14px rgba(27,58,82,.6);
+  }
+
+  .cta:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--navy), 0 10px 22px -14px rgba(27,58,82,.5);
+  }
+
+  .cta:focus-visible { outline: 3px solid var(--grape); outline-offset: 4px; }
+
+  .cta .arrow { font-size: 1.1em; line-height: 1; transform: translateY(-0.04em); }
+
+  .cta-note {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    text-align: center;
+    margin: 0.7rem auto 0;
+  }
+
+  /* ---------- spec chips ---------- */
+
+  .spec {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .spec li {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    padding: 1rem 1.1rem 1.1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 6.25rem;
+  }
+
+  .spec b {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .spec .val {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.0625rem, 3.4vw, 1.375rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .spec .s-theme { border-color: var(--ginger); }
+  .spec .s-theme .val { color: var(--ginger); }
+  .spec .s-restriction { border-color: var(--grape); }
+  .spec .s-restriction .val { color: var(--grape); }
+
+  @media (max-width: 26rem) {
+    .spec { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- previous jams ---------- */
+
+  .page-head { padding: 1.75rem 0 0; }
+
+  .back {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+  .back:hover { color: var(--ginger); }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.05;
+    margin: 0.75rem 0 0.4rem;
+  }
+  h1 span {
+    background: linear-gradient(96deg, var(--cyan), var(--grape) 55%, var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lede { color: var(--ink-2); margin: 0; max-width: 46ch; }
+
+  .jams { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 2.5rem; }
+
+  .jam {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow);
+    padding: 10px 10px 1.5rem;
+  }
+  .jam .hero-frame { box-shadow: none; }
+  .jam-body { padding: 0 0.6rem; }
+
+  .jam h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 4.6vw, 1.75rem);
+    line-height: 1.12;
+    margin: 1.1rem 0 0.15rem;
+  }
+  .jam-date {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .jam .spec { margin-top: 1.1rem; }
+  .jam .spec li { box-shadow: none; background: var(--sunk); min-height: 5.5rem; }
+
+  .jam-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 1.1rem 0 0;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.0625rem;
+    line-height: 1.1;
+    border: 3px solid var(--navy);
+    border-radius: 999px;
+    padding: 0.8rem 1rem 0.9rem;
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .btn.primary {
+    color: #fff;
+    background: linear-gradient(96deg, var(--ginger), var(--berry) 62%, var(--grape));
+    box-shadow: 0 3px 0 var(--navy);
+  }
+  .btn.secondary {
+    color: var(--navy);
+    background: var(--gold);
+    box-shadow: 0 3px 0 var(--navy);
+  }
+  .btn:hover, .btn:focus-visible { transform: translateY(-2px); box-shadow: 0 5px 0 var(--navy); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--navy); }
+  .btn:focus-visible { outline: 3px solid var(--grape); outline-offset: 4px; }
+
+  @media (max-width: 26rem) {
+    .jam-links { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 2.75rem;
+    background: var(--navy);
+    color: var(--sky);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding: 2.25rem 0 2.75rem;
+  }
+
+  footer .kicker { color: var(--gold); }
+
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 1.6rem;
+    display: grid;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+  }
+
+  footer li b {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+  }
+
+  .signrow {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .emblem {
+    width: 96px;
+    height: 96px;
+    flex: none;
+    display: block;
+    border-radius: var(--r-md);
+    background: #000;
+    border: 2px solid rgba(245,188,63,.45);
+  }
+
+  .signoff {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 5vw, 2rem);
+    line-height: 1.15;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .signoff span {
+    background: linear-gradient(96deg, var(--cyan), var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .chip {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.6875rem;
+    background: rgba(255,255,255,.10);
+    border: 2px dashed var(--gold);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem 0.25rem;
+    color: var(--sky);
+  }
+
+  a { color: var(--ginger); border-radius: 6px; }
+  a:focus-visible { outline: 3px solid var(--grape); outline-offset: 2px; }
+  footer a { color: var(--gold); }
+
+  .card, .cat-card, details { transition: transform .18s ease; }
+  .cat-card:hover { transform: translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="page-head">
+    <a class="back" href="index.html">&larr; Back to the current jam</a>
+    <h1>Previous <span>jams</span></h1>
+    <p class="lede">Every Jamference so far: the theme, the restriction, and everything people made with them.</p>
+  </header>
+
+  <ol class="jams" reversed>
+
+    <!-- To add a jam: copy this <li> block, put it ABOVE this one (newest first), and change the gif, title, dates, theme, restriction and links. -->
+    <li class="jam">
+      <div class="hero-frame">
+        <img src="jamference1.gif" loading="lazy" alt="Jamference #1 key art: a pixel-art scene with a ginger cat, a friendly robot and floating AI chips.">
+      </div>
+      <div class="jam-body">
+        <h2>Jamference #1</h2>
+        <p class="jam-date">2&ndash;9 October 2026</p>
+        <ul class="spec">
+          <li class="s-theme">
+            <b>Theme</b>
+            <span class="val">Cat and Robot</span>
+          </li>
+          <li class="s-restriction">
+            <b>Restriction</b>
+            <span class="val">Movement Input Only</span>
+          </li>
+        </ul>
+        <div class="jam-links">
+          <a class="btn primary" href="https://itch.io/jam/jamference-ai-game-jam-hack-1" target="_blank" rel="noopener">Jam page <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn secondary" href="https://itch.io/jam/jamference-ai-game-jam-hack-1/entries" target="_blank" rel="noopener">Submissions <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </li>
+
+  </ol>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <ul>
+      <li><b>Current jam</b> <a href="index.html">Back to the Jamference home page</a></li>
+      <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
+    </ul>
+    <div class="signrow">
+      <img class="emblem" src="logo-192.jpg" width="96" height="96" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
+      <p class="signoff">Bring a cat. Bring a robot. <span>Bring a model.</span></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
