@@ -345,6 +345,72 @@
     .jam-links { grid-template-columns: 1fr; }
   }
 
+  /* ---------- results ---------- */
+
+  .results { margin: 1.25rem 0 0; }
+  .results h3 {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 0.6rem;
+  }
+  .results h3 + .winners { margin-bottom: 1.1rem; }
+  .winners { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+  .winners a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-sm);
+    padding: 0.6rem 0.9rem;
+    transition: transform .14s ease, border-color .14s ease;
+  }
+  .winners a:hover, .winners a:focus-visible { transform: translateY(-2px); border-color: var(--ginger); }
+  .winners .place {
+    flex: none;
+    min-width: 4.6rem;
+    text-align: center;
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    border-radius: 999px;
+    padding: 0.2rem 0.5rem 0.25rem;
+  }
+  .winners .p2 { background: #CFDCE6; }
+  .winners .p3 { background: #E9B98C; }
+  .winners .cat { background: var(--cyan); }
+  .winners .thumb {
+    flex: none;
+    width: 4.4rem;
+    height: auto;
+    aspect-ratio: 315 / 250;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--edge);
+    background: var(--card);
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+  }
+  @media (max-width: 26rem) {
+    .winners a { gap: 0.6rem; padding: 0.55rem 0.7rem; }
+    .winners .place { min-width: 4.6rem; padding-left: 0.35rem; padding-right: 0.35rem; }
+    .winners .thumb { width: 3.2rem; }
+  }
+  .winners .game { flex: 1; min-width: 0; line-height: 1.25; }
+  .winners .game strong { font-family: var(--display); font-weight: 800; font-size: 1.0625rem; display: block; }
+  .winners .game small { color: var(--ink-2); font-size: 0.875rem; }
+  .winners .score { flex: none; font-family: var(--pixel); font-size: 0.625rem; color: var(--ink-2); }
+
   /* ---------- footer ---------- */
 
   footer {
@@ -487,9 +553,23 @@
             <span class="val">Movement Input Only</span>
           </li>
         </ul>
+        <div class="results">
+          <h3>Overall winners</h3>
+          <ol class="winners">
+            <li><a href="https://sykoramade.itch.io/neko-night-market" target="_blank" rel="noopener"><span class="place ">1st</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNjgxNDcyLmpwZw==/original/GrNkED.jpg" alt="Neko Night Market cover art" loading="lazy" width="315" height="250"><span class="game"><strong>Neko Night Market</strong><small>by sykoramade</small></span><span class="score">4.361</span></a></li>
+            <li><a href="https://ans106.itch.io/roombacat" target="_blank" rel="noopener"><span class="place p2">2nd</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNjM3NTIwLnBuZw==/original/Qm3HSi.png" alt="RoombaCat cover art" loading="lazy" width="315" height="250"><span class="game"><strong>RoombaCat</strong><small>by Santo</small></span><span class="score">4.333</span></a></li>
+            <li><a href="https://funkyape.itch.io/meowcha" target="_blank" rel="noopener"><span class="place p3">3rd</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNjUyNTQ3LnBuZw==/original/L36i8z.png" alt="MEOWCHA cover art" loading="lazy" width="315" height="250"><span class="game"><strong>MEOWCHA</strong><small>by funkyApe</small></span><span class="score">4.273</span></a></li>
+          </ol>
+          <h3>Category winners</h3>
+          <ul class="winners">
+            <li><a href="https://dgeisert.itch.io/kitty-kingdom" target="_blank" rel="noopener"><span class="place cat">Fun</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNTI3ODg4LmpwZWc=/original/n8sEqo.jpeg" alt="Kitty Kingdom cover art" loading="lazy" width="315" height="250"><span class="game"><strong>Kitty Kingdom</strong><small>by dg</small></span><span class="score">4.429</span></a></li>
+            <li><a href="https://quantumwhisker.itch.io/sudo-meow" target="_blank" rel="noopener"><span class="place cat">Use of AI</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNjUxMDI0LmpwZw==/original/XJZkn%2B.jpg" alt="Sudo Meow cover art" loading="lazy" width="315" height="250"><span class="game"><strong>Sudo Meow</strong><small>by QuantumWhisker</small></span><span class="score">4.571</span></a></li>
+            <li><a href="https://funkyape.itch.io/meowcha" target="_blank" rel="noopener"><span class="place cat">Polish</span><img class="thumb" src="https://img.itch.zone/aW1nLzMwNjUyNTQ3LnBuZw==/original/L36i8z.png" alt="MEOWCHA cover art" loading="lazy" width="315" height="250"><span class="game"><strong>MEOWCHA</strong><small>by funkyApe</small></span><span class="score">4.545</span></a></li>
+          </ul>
+        </div>
         <div class="jam-links">
           <a class="btn primary" href="https://itch.io/jam/jamference-ai-game-jam-hack-1" target="_blank" rel="noopener">Jam page <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn secondary" href="https://itch.io/jam/jamference-ai-game-jam-hack-1/entries" target="_blank" rel="noopener">Submissions <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn secondary" href="https://itch.io/jam/jamference-ai-game-jam-hack-1/results" target="_blank" rel="noopener">Full results <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </li>
