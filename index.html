@@ -456,9 +456,14 @@
 
   .cats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
     gap: 1rem;
     margin: 1.4rem 0 1.25rem;
+  }
+
+  @media (max-width: 36rem) {
+    .cats { grid-template-columns: 1fr; }
   }
 
   .cat-card {
@@ -479,6 +484,7 @@
   .cat-card:nth-child(1) .cat-top { background: var(--ginger); }
   .cat-card:nth-child(2) .cat-top { background: var(--cyan); }
   .cat-card:nth-child(3) .cat-top { background: var(--berry); }
+  .cat-card:nth-child(4) .cat-top { background: var(--grape); }
 
   .cat-top .name {
     font-family: var(--display);
@@ -794,14 +800,14 @@
       <div class="card week">
         <span class="badge b2">Week 02</span>
         <h3>Rating week <span class="wk-date">6 &ndash; 13 Nov</span></h3>
-        <p>Everyone plays everyone. Score the three categories, leave people some real feedback, and the averages decide it at the end of the week.</p>
+        <p>Everyone plays everyone. Score the four categories, leave people some real feedback, and the averages decide it at the end of the week.</p>
       </div>
     </div>
   </section>
 
   <section>
     <h2>Ratings</h2>
-    <p>Three categories, weighted equally. The three scores are averaged, and the highest average wins.</p>
+    <p>Four categories, weighted equally. The four scores are averaged, and the highest average wins.</p>
 
     <div class="cats">
       <div class="cat-card">
@@ -815,6 +821,10 @@
       <div class="cat-card">
         <div class="cat-top"><span class="name">Polish</span></div>
         <p>How well does the whole thing come together? Art, audio, animation and feel: the sense that every piece was built for the others.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-top"><span class="name">Theme</span></div>
+        <p>How was the theme used in making the game? Clever or unexpected takes score higher than the obvious one, but it should be clear to a player how the theme shaped what you built.</p>
       </div>
     </div>
 
@@ -860,7 +870,7 @@
     <div class="faq">
       <details>
         <summary>Do I have to follow the theme?</summary>
-        <p>No. "Great Works of Art" is there to spark ideas. Only the restriction is compulsory.</p>
+        <p>No. "Great Works of Art" is there to spark ideas, and only the restriction is compulsory. Skipping it won't disqualify you, but Theme is one of the four rating categories, so a game that ignores it will score lower there.</p>
       </details>
       <details>
         <summary>Can I put a famous painting directly in my game?</summary>
@@ -904,7 +914,7 @@
       </details>
       <details>
         <summary>How is the winner decided?</summary>
-        <p>Fun, AI use, and Polish are averaged into a single score. Highest average takes it.</p>
+        <p>Fun, AI use, Polish and Theme are averaged into a single score. Highest average takes it.</p>
       </details>
       <details>
         <summary>I missed the deadline. Now what?</summary>
