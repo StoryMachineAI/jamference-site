@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
+<link rel="stylesheet" href="nav.css">
 
 <style>
   :root {
@@ -716,10 +717,21 @@
 </style>
 </head>
 <body>
+<nav class="sidenav" aria-label="Site">
+  <div class="sidenav-inner">
+    <a class="sidenav-brand" href="index.html"><img src="logo-192.jpg" width="96" height="96" alt=""><span>Jamference</span></a>
+    <ul>
+      <li><a class="navlink" href="index.html" aria-current="page">Home</a></li>
+      <li><a class="navlink" href="previous-jams.html">Previous Jams</a></li>
+      <li><a class="navlink" href="about.html">About Me</a></li>
+    </ul>
+    <p class="sidenav-foot">Hosted by <a href="https://storymachine.ai" target="_blank" rel="noopener">Story Machine AI</a></p>
+  </div>
+</nav>
 <div class="wrap hero">
   <h1 class="sr-only">Jamference: AI Game Jam Hack</h1>
   <div class="hero-frame">
-    <img src="Jamference3.gif" alt="Jamference: AI Game Jam Hack, a pixel-art gallery wall of famous paintings restaged with a ginger cat and a friendly robot, from a cat Mona Lisa to a robot with an apple.">
+    <img src="gifs/Jamference3.gif" alt="Jamference: AI Game Jam Hack, a pixel-art gallery wall of famous paintings restaged with a ginger cat and a friendly robot, from a cat Mona Lisa to a robot with an apple.">
   </div>
   <p class="tagline">One week. One theme. <span>One restriction nobody sees coming.</span></p>
   <p class="sub">A game jam about making games <em>with</em> AI, out in the open. Hosted by Story Machine AI.</p>
@@ -752,7 +764,7 @@
     </li>
     <li class="s-restriction">
       <b>Restriction</b>
-      <span class="val">To Be Announced</span>
+      <span class="val">No Text</span>
     </li>
   </ul>
 </div>
@@ -781,10 +793,14 @@
         <p>Styles are different. Nobody owns cubism or surrealism, so you can make your game <em>look like</em> a Picasso or a Magritte. Just don't drop the newer paintings themselves into your game. When in doubt, check, and credit the original artwork on your page either way.</p>
       </div>
 
-      <div class="sealed">
-        <p class="kicker">Restriction: to be announced at the bell</p>
-        <p class="redacted" aria-hidden="true">▓▓▓▓▓ ▓▓▓▓▓▓▓▓ ▓▓ ▓▓▓▓▓ ▓▓▓▓▓▓▓ ▓▓▓▓ ▓▓▓▓▓▓▓▓</p>
-        <p>The restriction lands the second the jam opens, not a minute before. Nobody gets a head start, nobody gets to pre-build around it. And unlike the theme, it's <strong>mandatory</strong>.</p>
+      <div class="sealed revealed">
+        <p class="kicker">Restriction: revealed</p>
+        <p class="reveal-title">No Text</p>
+        <p>Your game can't show any text. No menus with words, no dialogue boxes, no tutorial pop-ups, no labels. Everything the player needs to know has to come across through art, animation, icons, sound and how the game plays.</p>
+        <p>There are two small exceptions. First, controls: a key prompt or an on-screen button can say Space, E or WASD. Labels only, never explanations, so no "Press Space to jump". Second, your game's title or logo can appear, for example on a title screen. Ideally, though, keep text to a minimum: show the controls with icons, or let players work them out.</p>
+        <p>Speech is fine. Voice acting, a narrator, characters chattering, AI generated voices: all allowed, as long as none of it shows up on screen as written words. That means no subtitles either.</p>
+        <p>This is about the game itself. Your itch.io page can have as much text as you like.</p>
+        <p>And unlike the theme, the restriction is <strong>mandatory</strong>.</p>
       </div>
     </div>
   </section>
@@ -937,7 +953,7 @@
   <div class="wrap">
     <ul>
       <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
-      <li><b>Restriction</b> Sealed until the jam opens. Join the Discord to hear it first.</li>
+      <li><b>Restriction</b> No Text. Nothing written on screen except bare control labels and your game's title or logo.</li>
       <li><b>Submissions</b> Open 30 October, closing hard at the deadline on 6 November.</li>
       <li><b>Previous jams</b> <a href="previous-jams.html">See every past theme, restriction and entry</a></li>
     </ul>

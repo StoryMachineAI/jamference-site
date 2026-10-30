@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About me · Jamference</title>
+<meta name="description" content="David Geisert: game developer, Meta prototyper, AI product builder, and host of Jamference.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Silkscreen:wght@400;700&display=swap">
+<link rel="stylesheet" href="nav.css">
+
+<style>
+  :root {
+    /* palette lifted from the jam key art */
+    --navy:    #1B3A52;
+    --sky:     #E7F5FB;
+    --sky-2:   #C9E9F5;
+    --cream:   #FFF8EC;
+    --ginger:  #E27E2C;
+    --cyan:    #2FB6CE;
+    --mint:    #6BBE59;
+    --berry:   #DE4F9B;
+    --grape:   #7A50BE;
+    --gold:    #F5BC3F;
+
+    --ground:  var(--sky);
+    --card:    #FFFFFF;
+    --sunk:    var(--cream);
+    --ink:     var(--navy);
+    --ink-2:   #5E7C93;
+    --edge:    #C9E1EE;
+    --shadow:  0 2px 0 rgba(27,58,82,.07), 0 10px 26px -14px rgba(27,58,82,.30);
+
+    --display: "Baloo 2", "Trebuchet MS", sans-serif;
+    --body:    "Nunito", "Segoe UI", system-ui, sans-serif;
+    --pixel:   "Silkscreen", ui-monospace, monospace;
+
+    --r-lg: 28px;
+    --r-md: 20px;
+    --r-sm: 14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #102433;
+      --card:   #1B3A52;
+      --sunk:   #17334A;
+      --ink:    #EAF6FB;
+      --ink-2:  #9DBBCD;
+      --edge:   #2C5271;
+      --ginger: #F0954A;
+      --cyan:   #52D2E6;
+      --mint:   #85D372;
+      --berry:  #F06BB2;
+      --grape:  #A283DE;
+      --gold:   #FFCE5E;
+      --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #102433;
+    --card:   #1B3A52;
+    --sunk:   #17334A;
+    --ink:    #EAF6FB;
+    --ink-2:  #9DBBCD;
+    --edge:   #2C5271;
+    --ginger: #F0954A;
+    --cyan:   #52D2E6;
+    --mint:   #85D372;
+    --berry:  #F06BB2;
+    --grape:  #A283DE;
+    --gold:   #FFCE5E;
+    --shadow: 0 2px 0 rgba(0,0,0,.18), 0 12px 28px -14px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero { padding: 1.25rem 0 0; }
+
+  .hero-frame {
+    background: var(--navy);
+    border-radius: var(--r-lg);
+    padding: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .hero-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .tagline {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 4.4vw, 1.875rem);
+    line-height: 1.2;
+    text-align: center;
+    text-wrap: balance;
+    margin: 1.5rem auto 0;
+    max-width: 26ch;
+  }
+
+  .tagline span {
+    background: linear-gradient(96deg, var(--cyan), var(--grape) 55%, var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub {
+    text-align: center;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin: 0.5rem auto 0;
+  }
+
+  /* ---------- primary CTA ---------- */
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 30rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+    line-height: 1.1;
+    color: #fff;
+    background: linear-gradient(96deg, var(--ginger), var(--berry) 62%, var(--grape));
+    border: 3px solid var(--navy);
+    border-radius: 999px;
+    padding: 1rem 1.6rem 1.1rem;
+    box-shadow: 0 4px 0 var(--navy), 0 14px 30px -14px rgba(27,58,82,.55);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--navy), 0 18px 34px -14px rgba(27,58,82,.6);
+  }
+
+  .cta:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--navy), 0 10px 22px -14px rgba(27,58,82,.5);
+  }
+
+  .cta:focus-visible { outline: 3px solid var(--grape); outline-offset: 4px; }
+
+  .cta .arrow { font-size: 1.1em; line-height: 1; transform: translateY(-0.04em); }
+
+  .cta-note {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    text-align: center;
+    margin: 0.7rem auto 0;
+  }
+
+  /* ---------- spec chips ---------- */
+
+  .spec {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .spec li {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    padding: 1rem 1.1rem 1.1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 6.25rem;
+  }
+
+  .spec b {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .spec .val {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.0625rem, 3.4vw, 1.375rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .spec .s-theme { border-color: var(--ginger); }
+  .spec .s-theme .val { color: var(--ginger); }
+  .spec .s-restriction { border-color: var(--grape); }
+  .spec .s-restriction .val { color: var(--grape); }
+
+  @media (max-width: 26rem) {
+    .spec { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- previous jams ---------- */
+
+  .page-head { padding: 1.75rem 0 0; }
+
+  .back {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+  .back:hover { color: var(--ginger); }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 7vw, 3rem);
+    line-height: 1.05;
+    margin: 0.75rem 0 0.4rem;
+  }
+  h1 span {
+    background: linear-gradient(96deg, var(--cyan), var(--grape) 55%, var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lede { color: var(--ink-2); margin: 0; max-width: 46ch; }
+
+  .jams { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 2.5rem; }
+
+  .jam {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow);
+    padding: 10px 10px 1.5rem;
+  }
+  .jam .hero-frame { box-shadow: none; }
+  .jam-body { padding: 0 0.6rem; }
+
+  .jam h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 4.6vw, 1.75rem);
+    line-height: 1.12;
+    margin: 1.1rem 0 0.15rem;
+  }
+  .jam-date {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .jam .spec { margin-top: 1.1rem; }
+  .jam .spec li { box-shadow: none; background: var(--sunk); min-height: 5.5rem; }
+
+  .jam-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 1.1rem 0 0;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.0625rem;
+    line-height: 1.1;
+    border: 3px solid var(--navy);
+    border-radius: 999px;
+    padding: 0.8rem 1rem 0.9rem;
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .btn.primary {
+    color: #fff;
+    background: linear-gradient(96deg, var(--ginger), var(--berry) 62%, var(--grape));
+    box-shadow: 0 3px 0 var(--navy);
+  }
+  .btn.secondary {
+    color: var(--navy);
+    background: var(--gold);
+    box-shadow: 0 3px 0 var(--navy);
+  }
+  .btn:hover, .btn:focus-visible { transform: translateY(-2px); box-shadow: 0 5px 0 var(--navy); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--navy); }
+  .btn:focus-visible { outline: 3px solid var(--grape); outline-offset: 4px; }
+
+  @media (max-width: 26rem) {
+    .jam-links { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- results ---------- */
+
+  .results { margin: 1.25rem 0 0; }
+  .results h3 {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 0.6rem;
+  }
+  .results h3 + .winners { margin-bottom: 1.1rem; }
+  .winners { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+  .winners a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-sm);
+    padding: 0.6rem 0.9rem;
+    transition: transform .14s ease, border-color .14s ease;
+  }
+  .winners a:hover, .winners a:focus-visible { transform: translateY(-2px); border-color: var(--ginger); }
+  .winners .place {
+    flex: none;
+    min-width: 4.6rem;
+    text-align: center;
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    border-radius: 999px;
+    padding: 0.2rem 0.5rem 0.25rem;
+  }
+  .winners .p2 { background: #CFDCE6; }
+  .winners .p3 { background: #E9B98C; }
+  .winners .cat { background: var(--cyan); }
+  .winners .thumb {
+    flex: none;
+    width: 4.4rem;
+    height: auto;
+    aspect-ratio: 315 / 250;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--edge);
+    background: var(--card);
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+  }
+  @media (max-width: 26rem) {
+    .winners a { gap: 0.6rem; padding: 0.55rem 0.7rem; }
+    .winners .place { min-width: 4.6rem; padding-left: 0.35rem; padding-right: 0.35rem; }
+    .winners .thumb { width: 3.2rem; }
+  }
+  .winners .game { flex: 1; min-width: 0; line-height: 1.25; }
+  .winners .game strong { font-family: var(--display); font-weight: 800; font-size: 1.0625rem; display: block; }
+  .winners .game small { color: var(--ink-2); font-size: 0.875rem; }
+  .winners .score { flex: none; font-family: var(--pixel); font-size: 0.625rem; color: var(--ink-2); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 2.75rem;
+    background: var(--navy);
+    color: var(--sky);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding: 2.25rem 0 2.75rem;
+  }
+
+  footer .kicker { color: var(--gold); }
+
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 1.6rem;
+    display: grid;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+  }
+
+  footer li b {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+  }
+
+  .signrow {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .emblem {
+    width: 96px;
+    height: 96px;
+    flex: none;
+    display: block;
+    border-radius: var(--r-md);
+    background: #000;
+    border: 2px solid rgba(245,188,63,.45);
+  }
+
+  .signoff {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.375rem, 5vw, 2rem);
+    line-height: 1.15;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .signoff span {
+    background: linear-gradient(96deg, var(--cyan), var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .chip {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.6875rem;
+    background: rgba(255,255,255,.10);
+    border: 2px dashed var(--gold);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem 0.25rem;
+    color: var(--sky);
+  }
+
+  a { color: var(--ginger); border-radius: 6px; }
+  a:focus-visible { outline: 3px solid var(--grape); outline-offset: 2px; }
+  footer a { color: var(--gold); }
+
+  .card, .cat-card, details { transition: transform .18s ease; }
+  .cat-card:hover { transform: translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- about ---------- */
+
+  .about-hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0 0;
+  }
+
+  .portrait {
+    width: 11rem;
+    height: 11rem;
+    border-radius: var(--r-lg);
+    background: var(--navy);
+    padding: 8px;
+    box-shadow: var(--shadow);
+    flex: none;
+  }
+
+  .portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .about-hero h1 { margin-top: 0; }
+
+  @media (max-width: 36rem) {
+    .about-hero { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .about-hero .lede { margin: 0 auto; }
+    .portrait { width: 10rem; height: 10rem; }
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+  }
+  @media (max-width: 36rem) { .links { justify-content: center; } }
+
+  .links a {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem 0.45rem;
+    transition: border-color .14s ease, transform .14s ease;
+  }
+  .links a:hover, .links a:focus-visible { border-color: var(--ginger); transform: translateY(-1px); }
+
+  section { padding: 2.75rem 0 0; }
+
+  .card {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-lg);
+    padding: 1.6rem 1.6rem 1.75rem;
+    box-shadow: var(--shadow);
+  }
+
+  .kicker {
+    font-family: var(--pixel);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0 0 0.5rem;
+  }
+
+  section > h2, .card > h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 4.6vw, 2rem);
+    line-height: 1.12;
+    margin: 0 0 0.85rem;
+    text-wrap: balance;
+  }
+
+  p { margin: 0 0 1rem; max-width: 66ch; }
+  p:last-child { margin-bottom: 0; }
+
+  /* timeline */
+  .timeline { list-style: none; padding: 0; margin: 1.4rem 0 0; display: grid; gap: 1rem; }
+
+  .role {
+    position: relative;
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-left: 6px solid var(--ginger);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow);
+    padding: 1.1rem 1.25rem 1.2rem;
+  }
+  .role:nth-child(2) { border-left-color: var(--cyan); }
+  .role:nth-child(3) { border-left-color: var(--grape); }
+  .role:nth-child(4) { border-left-color: var(--mint); }
+  .role:nth-child(5) { border-left-color: var(--berry); }
+
+  .role .org {
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 0.25rem;
+  }
+
+  .role h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 0 0 0.4rem;
+  }
+
+  .role p { font-size: 0.9375rem; }
+  .role p + p { margin-top: 0.6rem; }
+
+  .stat {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem 0.3rem;
+    margin: 0.5rem 0.3rem 0 0;
+  }
+
+  /* project grid */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.9rem;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .proj {
+    background: var(--sunk);
+    border: 2px solid var(--edge);
+    border-radius: var(--r-md);
+    padding: 1rem 1.1rem 1.1rem;
+  }
+
+  .proj h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.125rem;
+    line-height: 1.2;
+    margin: 0 0 0.3rem;
+  }
+
+  .proj h3 a { color: inherit; text-decoration: none; }
+  .proj h3 a:hover { color: var(--ginger); }
+
+  .proj .tag {
+    font-family: var(--pixel);
+    font-size: 0.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--berry);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .proj p { font-size: 0.9375rem; margin: 0; }
+</style>
+</head>
+<body>
+<nav class="sidenav" aria-label="Site">
+  <div class="sidenav-inner">
+    <a class="sidenav-brand" href="index.html"><img src="logo-192.jpg" width="96" height="96" alt=""><span>Jamference</span></a>
+    <ul>
+      <li><a class="navlink" href="index.html">Home</a></li>
+      <li><a class="navlink" href="previous-jams.html">Previous Jams</a></li>
+      <li><a class="navlink" href="about.html" aria-current="page">About Me</a></li>
+    </ul>
+    <p class="sidenav-foot">Hosted by <a href="https://storymachine.ai" target="_blank" rel="noopener">Story Machine AI</a></p>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="about-hero">
+    <div class="portrait">
+      <img src="img/david-geisert.jpg" width="360" height="360" alt="David Geisert, smiling in sunglasses and a light blue shirt, in front of an illustrated map of London.">
+    </div>
+    <div>
+      <p class="kicker">About me</p>
+      <h1>David <span>Geisert</span></h1>
+      <p class="lede">Game developer turned prototyper turned AI founder. I host Jamference, run Story Machine AI, and spend my weekends making small games with models in the loop.</p>
+      <ul class="links">
+        <li><a href="https://dgeisert-portfolio.lovable.app/" target="_blank" rel="noopener">Portfolio</a></li>
+        <li><a href="https://www.linkedin.com/in/dgeisert/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://dgeisert.itch.io/" target="_blank" rel="noopener">itch.io</a></li>
+        <li><a href="https://www.youtube.com/channel/UCEsiDbUcRPLOxGqJgpoBZKg" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://geisert.me/" target="_blank" rel="noopener">Blog</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>Why I run a game jam about AI</h2>
+      <p>I've spent my career at the point where games, new hardware and new tools meet: shipping a VR game on a brand-new headset, prototyping experiences for AR glasses that hadn't been released yet, and now building products where AI does a lot of the heavy lifting.</p>
+      <p>Jamference is the jam I wanted to enter. Everyone gets the same theme and restriction, everyone is allowed (and expected) to use AI, and everyone shows their work. I make a game for every jam too, so I'm in the trenches with you.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">Games &amp; XR</p>
+    <h2>My history in the games industry</h2>
+    <ol class="timeline">
+      <li class="role">
+        <p class="org">Weekends &amp; jams</p>
+        <h3>Still making games</h3>
+        <p>Jams keep me shipping. Recent ones include <em>Hexagon Tactics</em>, where AI creates characters, enemies, names and art in real time; <em>Island Builder</em>, an AI-assisted card roguelite; <em>Severed Heads, United Hearts</em>, where you persuade AI agents to back you over your rival; and <em>Deep Boid Sea</em>, a shader and flocking toy. At Jamference #1, my tower defence game <a href="https://dgeisert.itch.io/kitty-kingdom" target="_blank" rel="noopener"><em>Kitty Kingdom</em></a> was rated the most fun entry.</p>
+      </li>
+      <li class="role">
+        <p class="org">Meta &middot; Meta Connect demo</p>
+        <h3>Object locking AI</h3>
+        <p>With a team of six over three months, I led prototyping for a system that recognises real objects, works out where they are in 3D, pins stable markers to them, and feeds what it sees to an LLM (for example, suggesting a recipe from the ingredients on the counter). It became part of a live demo at Meta Connect.</p>
+        <span class="stat">3 months</span><span class="stat">Team of 6</span>
+      </li>
+      <li class="role">
+        <p class="org">Meta &middot; Reality Labs</p>
+        <h3>Senior product design prototyper, Orion AR glasses</h3>
+        <p>Two years prototyping on Orion, Meta's internal see-through AR glasses with eye, hand and touch input. I led prototyping for messaging (Messenger and WhatsApp), building every exploratory prototype in Unity, running studies, and pushing to test directly on the glasses rather than on stand-in VR headsets. The work explored AI summaries, prioritisation and notifications that know what you're doing, so messages don't swamp you while you walk around the real world.</p>
+      </li>
+      <li class="role">
+        <p class="org">Meta &middot; Reality Labs</p>
+        <h3>Colocation systems for Quest</h3>
+        <p>Early work on letting headsets know where each other are, so several people can share the same physical and virtual space. I designed and built the safety systems and ran the safety testing for colocated headsets.</p>
+      </li>
+      <li class="role">
+        <p class="org">Coinflip Studios</p>
+        <h3>Lead developer &amp; designer, <em>Ninja Legends</em></h3>
+        <p>I led the team behind <em>Ninja Legends</em>, a fast melee VR game and one of the first six-degrees-of-freedom titles released after the original Oculus Quest launched. I spotted that most existing VR games wouldn't port to the new standalone headset, steered the team toward a game that would run on that class of hardware, and worked my contacts to get it in front of the Quest teams early.</p>
+        <p>Being early in a near-empty store paid off. The game was built in only a few months and went on to release on Quest, Rift, Steam and PlayStation VR.</p>
+        <span class="stat">Over $1.2M in revenue</span><span class="stat">Early Quest title</span>
+      </li>
+      <li class="role">
+        <p class="org">Rocket Games</p>
+        <h3>Lead systems designer, <em>Viva Slots</em></h3>
+        <p>Rocket Games became a leader in social casino with <em>Viva Slots</em>, the most popular classic slots game, and was acquired by Penn National Gaming in 2016. I defined product and design for new business segments, launched new products and product lines, and designed retention and monetisation systems tested with A/B and multi-armed bandit experiments. I also ran marketing and growth for the game portfolio on a $1M yearly budget.</p>
+        <span class="stat">Acquired by Penn National Gaming</span><span class="stat">$1M yearly marketing budget</span>
+      </li>
+      <li class="role">
+        <p class="org">Zynga</p>
+        <h3>Product manager, <em>Pioneer Trail</em> &amp; Storyville</h3>
+        <p>My start in games. I was a product manager on <em>Pioneer Trail</em>, then a senior product manager in the Storyville division, handling feature design, product management and analysis for one of Zynga's top-grossing games, and managing release strategies for new apps.</p>
+        <span class="stat">Top-grossing game</span>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="kicker">AI</p>
+    <h2>My work in AI</h2>
+    <p>These days I'm CEO of Story Machine AI, leading a small team and building AI products with AI development tools. Some of what I've made:</p>
+    <ul class="projects">
+      <li class="proj">
+        <span class="tag">AI product</span>
+        <h3><a href="https://dgeisert-portfolio.lovable.app/project/story-machine-ai" target="_blank" rel="noopener">Story Machine AI</a></h3>
+        <p>An AI filmmaking platform that takes you from an idea to a finished short film: story structure, consistent characters, shots, video, voice and lipsync. I architected it, built the MVP in about a month, then hired two developers and a marketer.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">AI product</span>
+        <h3><a href="https://dgeisert-portfolio.lovable.app/project/play-machine" target="_blank" rel="noopener">Play Machine</a></h3>
+        <p>Describe. Play. Ship. A tool that turns natural-language prompts into playable games.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">AI product</span>
+        <h3><a href="https://dgeisert-portfolio.lovable.app/project/another-like-that" target="_blank" rel="noopener">Another Like That</a></h3>
+        <p>A recommendation engine for London activities and events, designed and launched in three weeks.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">AI product</span>
+        <h3><a href="https://dgeisert-portfolio.lovable.app/project/lifted-news" target="_blank" rel="noopener">Lifted News</a></h3>
+        <p>A daily news site that surfaces uplifting, hopeful stories from around the world.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">AI film</span>
+        <h3><a href="https://www.youtube.com/channel/UCEsiDbUcRPLOxGqJgpoBZKg" target="_blank" rel="noopener">AI short films</a></h3>
+        <p>Early experiments in AI filmmaking, including <em>The Sea's Keeper</em> (LoRA training, IPAdapter and vid2vid for consistent characters), <em>Speakeasy Revenge</em> and <em>Lost Connection</em>.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">Community</span>
+        <h3><a href="https://www.bigscreenhack.com/" target="_blank" rel="noopener">Big Screen Hack</a></h3>
+        <p>I help host this AI film hackathon in London, where the winning films are screened on an IMAX screen.</p>
+      </li>
+      <li class="proj">
+        <span class="tag">Writing</span>
+        <h3>Once Upon an Algorithm</h3>
+        <p>A 2022 blog on writing with AI, under a pen name. In 2023 I also illustrated and published a version of <em>Alice's Adventures in Wonderland</em>.</p>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <ul>
+      <li><b>Current jam</b> <a href="index.html">Back to the Jamference home page</a></li>
+      <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
+    </ul>
+    <div class="signrow">
+      <img class="emblem" src="logo-192.jpg" width="96" height="96" alt="Jamference AI Game Jam logo: a ginger cat and a robot under neon lettering.">
+      <p class="signoff">Come make something with me. <span>Bring a model.</span></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
