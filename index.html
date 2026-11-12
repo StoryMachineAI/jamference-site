@@ -390,6 +390,193 @@
   }
   .sealed.revealed p + p { margin-top: 0.75rem; }
 
+
+  /* ---------- lucky cat (pure CSS maneki-neko) ---------- */
+
+  .lucky-wrap { display: flex; gap: 1.25rem; align-items: center; margin: 0 0 0.9rem; }
+  .lucky-wrap .reveal-title { margin: 0 0 0.35rem; }
+  .lucky-wrap .lucky-sub { font-size: 0.9375rem; margin: 0; }
+
+  .lucky-cat {
+    --lc-line: #1B3A52;
+    --lc-fur:  #FFFDF8;
+    --lc-pink: #F7A9C4;
+    --lc-red:  #E2463B;
+    --lc-gold: #F5BC3F;
+    position: relative;
+    flex: 0 0 auto;
+    width: 160px;
+    height: 180px;
+    animation: lc-bob 2.4s ease-in-out infinite;
+  }
+  .lucky-cat div { position: absolute; }
+
+  .lc-shadow {
+    left: 28px; top: 166px; width: 104px; height: 12px;
+    border-radius: 50%;
+    background: rgba(27,58,82,.18);
+    animation: lc-shadow 2.4s ease-in-out infinite;
+  }
+  .lc-body {
+    left: 30px; top: 82px; width: 100px; height: 86px;
+    background: var(--lc-fur);
+    border: 3px solid var(--lc-line);
+    border-radius: 48% 48% 38% 38% / 58% 58% 42% 42%;
+    z-index: 1;
+  }
+  .lc-ear {
+    top: 2px; width: 38px; height: 40px;
+    background: var(--lc-line);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+  .lc-ear::before, .lc-ear::after { content: ""; position: absolute; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .lc-ear::before { left: 5px; top: 7px; width: 28px; height: 33px; background: var(--lc-fur); }
+  .lc-ear::after  { left: 11px; top: 16px; width: 16px; height: 22px; background: var(--lc-pink); }
+  .lc-ear.l { left: 30px; transform: rotate(-14deg); }
+  .lc-ear.r { left: 92px; transform: rotate(14deg); animation: lc-ear 4.8s ease-in-out infinite; transform-origin: 50% 100%; }
+  .lc-head {
+    left: 24px; top: 20px; width: 112px; height: 86px;
+    background: var(--lc-fur);
+    border: 3px solid var(--lc-line);
+    border-radius: 50% / 54%;
+    z-index: 3;
+  }
+  .lc-eye {
+    top: 34px; width: 18px; height: 10px;
+    border-top: 3px solid var(--lc-line);
+    border-radius: 50% 50% 0 0;
+  }
+  .lc-eye.l { left: 24px; }
+  .lc-eye.r { left: 64px; }
+  .lc-blush {
+    top: 46px; width: 16px; height: 9px;
+    border-radius: 50%;
+    background: var(--lc-pink);
+    opacity: .85;
+  }
+  .lc-blush.l { left: 14px; }
+  .lc-blush.r { left: 76px; }
+  .lc-nose {
+    left: 47px; top: 46px; width: 12px; height: 8px;
+    background: var(--lc-pink);
+    border: 2px solid var(--lc-line);
+    border-radius: 40% 40% 60% 60% / 30% 30% 70% 70%;
+  }
+  .lc-mouth {
+    top: 53px; width: 12px; height: 8px;
+    border-bottom: 2.5px solid var(--lc-line);
+    border-radius: 0 0 50% 50%;
+  }
+  .lc-mouth.l { left: 42px; }
+  .lc-mouth.r { left: 53px; }
+  .lc-whisker { top: 50px; width: 22px; height: 2px; background: var(--lc-line); border-radius: 2px; }
+  .lc-whisker.l1 { left: -8px; transform: rotate(8deg); }
+  .lc-whisker.l2 { left: -8px; top: 57px; transform: rotate(-6deg); }
+  .lc-whisker.r1 { left: 92px; transform: rotate(-8deg); }
+  .lc-whisker.r2 { left: 92px; top: 57px; transform: rotate(6deg); }
+  .lc-spot {
+    left: 66px; top: 6px; width: 26px; height: 18px;
+    background: var(--ginger);
+    border-radius: 50% 60% 50% 40%;
+    opacity: .9;
+  }
+  .lc-collar {
+    left: 40px; top: 98px; width: 80px; height: 13px;
+    background: var(--lc-red);
+    border: 2.5px solid var(--lc-line);
+    border-radius: 10px;
+    z-index: 2;
+  }
+  .lc-bell {
+    left: 70px; top: 104px; width: 20px; height: 20px;
+    background: radial-gradient(circle at 35% 30%, #FFF1B8 0 18%, var(--lc-gold) 20%);
+    border: 2.5px solid var(--lc-line);
+    border-radius: 50%;
+    z-index: 4;
+    transform-origin: 50% 0;
+    animation: lc-jingle 0.6s ease-in-out infinite alternate;
+  }
+  .lc-bell::after {
+    content: ""; position: absolute; left: 6px; top: 9px; width: 4px; height: 6px;
+    background: var(--lc-line); border-radius: 2px;
+  }
+  .lc-coin {
+    left: 52px; top: 124px; width: 56px; height: 38px;
+    background: linear-gradient(160deg, #FFE38A, var(--lc-gold) 55%, #D99A1E);
+    border: 3px solid var(--lc-line);
+    border-radius: 50%;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .lc-coin::before {
+    content: ""; position: absolute; inset: 4px;
+    border: 2px solid rgba(27,58,82,.45);
+    border-radius: 50%;
+  }
+  .lc-coin::after {
+    content: ""; position: absolute; top: -10px; left: -30px; width: 18px; height: 60px;
+    background: rgba(255,255,255,.75);
+    transform: rotate(25deg);
+    animation: lc-shine 2.8s ease-in-out infinite;
+  }
+  .lc-paw-hold {
+    width: 22px; height: 18px; top: 140px;
+    background: var(--lc-fur);
+    border: 3px solid var(--lc-line);
+    border-radius: 50%;
+    z-index: 5;
+  }
+  .lc-paw-hold.l { left: 40px; }
+  .lc-paw-hold.r { left: 98px; }
+  .lc-arm {
+    left: 118px; top: 44px; width: 30px; height: 56px;
+    background: var(--lc-fur);
+    border: 3px solid var(--lc-line);
+    border-radius: 15px 15px 12px 12px;
+    z-index: 2;
+    transform-origin: 50% 92%;
+    animation: lc-wave 1.1s ease-in-out infinite alternate;
+  }
+  .lc-arm::before {
+    content: ""; position: absolute; left: 6px; top: 7px; width: 13px; height: 10px;
+    background: var(--lc-pink); border-radius: 50%;
+  }
+  .lc-arm::after {
+    content: ""; position: absolute; left: 3px; top: 0; width: 4px; height: 4px;
+    background: var(--lc-pink); border-radius: 50%;
+    box-shadow: 7px -2px 0 var(--lc-pink), 14px 0 0 var(--lc-pink);
+  }
+  .lc-spark {
+    width: 14px; height: 14px;
+    background: var(--gold);
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    animation: lc-twinkle 1.8s ease-in-out infinite;
+    z-index: 6;
+  }
+  .lc-spark.s1 { left: 146px; top: 20px; }
+  .lc-spark.s2 { left: 4px;   top: 70px; width: 10px; height: 10px; animation-delay: .6s; }
+  .lc-spark.s3 { left: 120px; top: 150px; width: 11px; height: 11px; animation-delay: 1.1s; }
+  .lc-spark.s4 { left: 14px;  top: 10px; width: 9px; height: 9px; animation-delay: 1.5s; }
+
+  @keyframes lc-wave    { from { transform: rotate(-6deg); } to { transform: rotate(24deg); } }
+  @keyframes lc-bob     { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes lc-shadow  { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.88); opacity: .7; } }
+  @keyframes lc-jingle  { from { transform: rotate(-12deg); } to { transform: rotate(12deg); } }
+  @keyframes lc-ear     { 0%, 88%, 100% { transform: rotate(14deg); } 92% { transform: rotate(26deg); } 96% { transform: rotate(8deg); } }
+  @keyframes lc-shine   { 0%, 55% { left: -30px; } 85%, 100% { left: 80px; } }
+  @keyframes lc-twinkle { 0%, 100% { transform: scale(.3) rotate(0); opacity: 0; } 50% { transform: scale(1) rotate(45deg); opacity: 1; } }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lucky-cat { filter: drop-shadow(0 0 1px #EAF6FB) drop-shadow(0 0 1px #EAF6FB); }
+  }
+  :root[data-theme="dark"] .lucky-cat { filter: drop-shadow(0 0 1px #EAF6FB) drop-shadow(0 0 1px #EAF6FB); }
+
+  @media (max-width: 34rem) {
+    .lucky-wrap { flex-direction: column; text-align: center; }
+    .lucky-wrap .lucky-sub { margin: 0 auto; }
+  }
+
   /* ---------- public domain note ---------- */
 
   .pd-note {
@@ -764,7 +951,7 @@
     </li>
     <li class="s-restriction">
       <b>Restriction</b>
-      <span class="val">To Be Announced</span>
+      <span class="val">Hidden Lucky Cat</span>
     </li>
   </ul>
 </div>
@@ -787,10 +974,42 @@
       <p>The dream: games set in the world we would actually want to live in. A city builder where every block has to feed itself. A farming sim on the roof of a skyscraper. A puzzle game about routing sunlight, water and power through a living machine. A cosy delivery game by airship and bicycle. A robot gardener coaxing a ruined city back to life.</p>
       <p>But any take on solarpunk is fair game: repairing what is broken, a community working together, a world recovering after the bad times, or just a really nice greenhouse. It doesn't have to be all sunshine either; solarpunk stories have problems to solve, they just believe they can be solved. The theme is a launchpad, not a leash. Nobody is checking your homework against a definition.</p>
 
-      <div class="sealed">
-        <p class="kicker">Restriction: to be announced at the bell</p>
-        <p class="redacted" aria-hidden="true">▓▓▓▓▓ ▓▓▓▓▓▓▓▓ ▓▓ ▓▓▓▓▓ ▓▓▓▓▓▓▓ ▓▓▓▓ ▓▓▓▓▓▓▓▓</p>
-        <p>The restriction lands the second the jam opens, not a minute before. Nobody gets a head start, nobody gets to pre-build around it. <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">Join the Discord</a> to hear it the moment it drops. And unlike the theme, it's <strong>mandatory</strong>.</p>
+      <div class="sealed revealed">
+        <p class="kicker">Restriction: revealed</p>
+        <div class="lucky-wrap">
+          <div class="lucky-cat" aria-hidden="true">
+            <div class="lc-shadow"></div>
+            <div class="lc-arm"></div>
+            <div class="lc-body"></div>
+            <div class="lc-ear l"></div>
+            <div class="lc-ear r"></div>
+            <div class="lc-head">
+              <div class="lc-spot"></div>
+              <div class="lc-eye l"></div><div class="lc-eye r"></div>
+              <div class="lc-blush l"></div><div class="lc-blush r"></div>
+              <div class="lc-nose"></div>
+              <div class="lc-mouth l"></div><div class="lc-mouth r"></div>
+              <div class="lc-whisker l1"></div><div class="lc-whisker l2"></div>
+              <div class="lc-whisker r1"></div><div class="lc-whisker r2"></div>
+            </div>
+            <div class="lc-collar"></div>
+            <div class="lc-bell"></div>
+            <div class="lc-coin"></div>
+            <div class="lc-paw-hold l"></div>
+            <div class="lc-paw-hold r"></div>
+            <div class="lc-spark s1"></div><div class="lc-spark s2"></div>
+            <div class="lc-spark s3"></div><div class="lc-spark s4"></div>
+          </div>
+          <div>
+            <p class="reveal-title">Hidden Lucky Cat</p>
+            <p class="lucky-sub">Somewhere in your game, hide a lucky cat. Find it, and good things happen.</p>
+          </div>
+        </div>
+        <p>Your game must hide a lucky cat (a maneki-neko, the little waving cat you see in shop windows) somewhere for the player to discover. When the player finds it, it has to give them some kind of benefit.</p>
+        <p>Hidden means hidden. It shouldn't sit on the main path or be handed to the player. Tuck it behind a waterfall, on a rooftop nobody bothers to climb, in the corner of a menu, at the end of a strange sequence of clicks. But it must be findable by a curious player who never opens your source code. Hints are welcome.</p>
+        <p>The benefit is up to you, but it should be real: extra lives, coins, a power-up, a shortcut, a secret level, a better ending, a fun cheat mode. Something that changes the game for whoever finds it, not just a "you found it" message.</p>
+        <p>Your cat can look however suits your game: pixel art, 3D, a sticker on a wall, a solarpunk cat made of moss and solar panels. As long as a player would recognise it as a lucky cat, it counts. You must mention the hidden lucky cat in your itch.io page description, though you don't have to say where it is. If you're worried we won't find it, email a screenshot of your lucky cat to <a href="mailto:dg@jamference.com">dg@jamference.com</a>.</p>
+        <p>And unlike the theme, the restriction is <strong>mandatory</strong>.</p>
       </div>
     </div>
   </section>
@@ -939,7 +1158,7 @@
   <div class="wrap">
     <ul>
       <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
-      <li><b>Restriction</b> Sealed until the jam opens. Join the Discord to hear it first.</li>
+      <li><b>Restriction</b> Hidden Lucky Cat. Hide a lucky cat somewhere in your game that gives the player a benefit when they find it.</li>
       <li><b>Submissions</b> Open 13 November, closing hard at the deadline on 20 November.</li>
       <li><b>Previous jams</b> <a href="previous-jams.html">See every past theme, restriction and entry</a></li>
     </ul>
