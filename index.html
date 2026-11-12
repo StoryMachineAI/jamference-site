@@ -592,6 +592,21 @@
   .pd-note p { font-size: 0.9375rem; }
   .pd-note p + p { margin-top: 0.75rem; }
 
+  /* ---------- must-do callout ---------- */
+
+  .must-note {
+    margin: 1rem 0;
+    background: var(--card);
+    border: 2px solid var(--gold);
+    border-left: 6px solid var(--gold);
+    border-radius: var(--r-md);
+    padding: 1rem 1.25rem 1.1rem;
+  }
+
+  .must-note .kicker,
+  .sealed.revealed .must-note .kicker { color: var(--ginger); margin: 0 0 0.4rem; }
+  .must-note p { font-size: 0.9375rem; }
+
   /* ---------- two weeks ---------- */
 
   .weeks {
@@ -1008,7 +1023,11 @@
         <p>Your game must hide a lucky cat (a maneki-neko, the little waving cat you see in shop windows) somewhere for the player to discover. When the player finds it, it has to give them some kind of benefit.</p>
         <p>Hidden means hidden. It shouldn't sit on the main path or be handed to the player. Tuck it behind a waterfall, on a rooftop nobody bothers to climb, in the corner of a menu, at the end of a strange sequence of clicks. But it must be findable by a curious player who never opens your source code. Hints are welcome.</p>
         <p>The benefit is up to you, but it should be real: extra lives, coins, a power-up, a shortcut, a secret level, a better ending, a fun cheat mode. Something that changes the game for whoever finds it, not just a "you found it" message.</p>
-        <p>Your cat can look however suits your game: pixel art, 3D, a sticker on a wall, a solarpunk cat made of moss and solar panels. As long as a player would recognise it as a lucky cat, it counts. You must mention the hidden lucky cat in your itch.io page description, though you don't have to say where it is. If you're worried we won't find it, email a screenshot of your lucky cat to <a href="mailto:dg@jamference.com">dg@jamference.com</a>.</p>
+        <p>Your cat can look however suits your game: pixel art, 3D, a sticker on a wall, a solarpunk cat made of moss and solar panels. As long as a player would recognise it as a lucky cat, it counts.</p>
+        <div class="must-note">
+          <p class="kicker">Important: mention it on your game page</p>
+          <p>Your itch.io game page description <strong>must say that your game has a hidden lucky cat</strong>. You don't have to say where it is. If you're worried we won't find it, email a screenshot of your lucky cat to <a href="mailto:dg@jamference.com">dg@jamference.com</a>.</p>
+        </div>
         <p>And unlike the theme, the restriction is <strong>mandatory</strong>.</p>
       </div>
     </div>
@@ -1158,7 +1177,7 @@
   <div class="wrap">
     <ul>
       <li><b>Community &amp; announcements</b> <a href="https://discord.gg/Z99aJaBMQj" target="_blank" rel="noopener">discord.gg/Z99aJaBMQj</a></li>
-      <li><b>Restriction</b> Hidden Lucky Cat. Hide a lucky cat somewhere in your game that gives the player a benefit when they find it.</li>
+      <li><b>Restriction</b> Hidden Lucky Cat. Hide a lucky cat somewhere in your game that gives the player a benefit when they find it, and mention it in your itch.io game page description.</li>
       <li><b>Submissions</b> Open 13 November, closing hard at the deadline on 20 November.</li>
       <li><b>Previous jams</b> <a href="previous-jams.html">See every past theme, restriction and entry</a></li>
     </ul>
